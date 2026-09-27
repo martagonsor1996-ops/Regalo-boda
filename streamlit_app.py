@@ -58,8 +58,13 @@ st.markdown(
         font-size: 2.8rem;
         margin: 1rem 0 2rem;
     }
+    .st-key-heart-buttons {
+        max-width: 480px;
+        margin: 0 auto;
+    }
     .stButton > button {
-        width: 220px !important;
+        width: 100% !important;
+        max-width: 220px;
         min-height: 205px;
         margin: 0 auto;
         padding: 4rem 1.5rem 3rem;
@@ -135,7 +140,7 @@ st.markdown(
         .photo-2 { top: 7%; }
         .photo-5 { display: none; }
         .hero h1 { font-size: 2.2rem; }
-        .stButton > button { width: 150px !important; min-height: 155px; padding: 3rem 0.5rem 2rem; font-size: 0.9rem; }
+        .stButton > button { max-width: 150px; min-height: 155px; padding: 3rem 0.5rem 2rem; font-size: 0.9rem; }
     }
     </style>
     """,
@@ -171,13 +176,14 @@ if photo_paths:
 else:
     st.caption("Añade tus fotos en assets/fotos para verlas aquí.")
 
-left_button, right_button = st.columns([1, 1], gap="large")
+with st.container(key="heart-buttons"):
+    left_button, right_button = st.columns(2, gap="small")
 
-with left_button:
-    wants_to_know = st.button("Quiero  \nsaber", use_container_width=True)
+    with left_button:
+        wants_to_know = st.button("Quiero  \nsaber", use_container_width=True)
 
-with right_button:
-    wants_a_surprise = st.button("Quiero  \nsorpresa", use_container_width=True)
+    with right_button:
+        wants_a_surprise = st.button("Quiero  \nsorpresa", use_container_width=True)
 
 if wants_to_know:
     st.session_state["show_know_details"] = True
@@ -187,8 +193,9 @@ if wants_a_surprise:
     st.session_state["show_surprise_details"] = True
     st.session_state["show_know_details"] = False
 
+location_url = "https://www.google.com/maps/place/Manyo+Club+(Toyosu)/@35.6464135,139.7830627,17z/data=!4m21!1m11!3m10!1s0x601889a7257fa2b3:0x4f16b5579a219ae8!2sManyo+Club+(Toyosu)!5m2!4m1!1i2!8m2!3d35.6461872!4d139.7831588!10e5!16s%2Fg%2F11kqgnd8c2!3m8!1s0x601889a7257fa2b3:0x4f16b5579a219ae8!5m2!4m1!1i2!8m2!3d35.6461872!4d139.7831588!16s%2Fg%2F11kqgnd8c2?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
+
 if st.session_state.get("show_know_details", False):
-    location_url = "https://www.google.com/maps/place/Manyo+Club+(Toyosu)/@35.6464135,139.7830627,17z/data=!4m21!1m11!3m10!1s0x601889a7257fa2b3:0x4f16b5579a219ae8!2sManyo+Club+(Toyosu)!5m2!4m1!1i2!8m2!3d35.6461872!4d139.7831588!10e5!16s%2Fg%2F11kqgnd8c2!3m8!1s0x601889a7257fa2b3:0x4f16b5579a219ae8!5m2!4m1!1i2!8m2!3d35.6461872!4d139.7831588!16s%2Fg%2F11kqgnd8c2?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
 
     with st.expander("Detalles del regalo", expanded=True):
         st.markdown(
@@ -207,8 +214,23 @@ if st.session_state.get("show_know_details", False):
             """
         )
         st.link_button("Ubicación", location_url, use_container_width=True)
+        st.info("Os recomendamos coger para ir hacia allí la línea Yurikamome, intentad sentaros en el primer vagón :)")
         show_entry_qr_button("know_entry_qr")
 
-    if st.session_state.get("show_surprise_details", False):
-        st.success("¡La sorpresa está en camino!")
-        show_entry_qr_button("surprise_entry_qr")
+if st.session_state.get("show_surprise_details", False):
+    with st.expander("¡Así nos gusta, atrevidos!", expanded=True):
+        st.markdown(
+            """
+            Esperamos que lo disfrutéis mucho.
+
+            **¿Qué necesitáis?**
+
+            - Comprar pegatinas para tapar tatuajes y llevarlas ya puestas. Directamente decir allí que no tenéis (malotes jeje).
+            - Ir con hambre.
+            - Llevar 10 monedas de 100 yenes.
+            - Podéis ir a la hora que queráis, calculad más o menos 2h antes de la hora a la que soléis cenar.
+            """
+        )
+    st.link_button("Ubicación", location_url, use_container_width=True)
+    st.info("Os recomendamos coger para ir hacia allí la línea Yurikamome, intentad sentaros en el primer vagón :)")
+    show_entry_qr_button("surprise_entry_qr")
