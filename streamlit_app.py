@@ -33,8 +33,9 @@ def show_entry_qr_button(key):
 st.markdown(
     """
     <style>
-    .main {
-        background: linear-gradient(135deg, #fff7f0 0%, #f8e4e1 100%);
+    html, body, [data-testid="stAppViewContainer"], .stApp, .main {
+        background: #fff !important;
+        color-scheme: light;
     }
     .block-container {
         position: relative;
