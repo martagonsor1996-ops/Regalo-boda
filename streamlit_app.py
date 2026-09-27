@@ -60,17 +60,22 @@ st.markdown(
         margin: 1rem 0 2rem;
     }
     .st-key-heart-buttons {
+        width: 100%;
         max-width: 480px;
+        min-width: 0;
+        box-sizing: border-box;
         margin: 0 auto;
     }
     .st-key-heart-buttons [data-testid="stHorizontalBlock"] {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
+        width: 100% !important;
+        gap: 0.5rem !important;
     }
     .st-key-heart-buttons [data-testid="column"] {
-        width: 50% !important;
+        width: calc(50% - 0.25rem) !important;
         min-width: 0 !important;
-        flex: 1 1 50% !important;
+        flex: 0 0 calc(50% - 0.25rem) !important;
     }
     .stButton > button {
         width: 100% !important;
@@ -156,6 +161,7 @@ st.markdown(
         .block-container { padding-left: 1rem; padding-right: 1rem; }
     }
     @media (max-width: 600px) {
+        .st-key-heart-buttons { max-width: 320px; }
         .hero h1 { font-size: 2.2rem; }
         .stButton > button { max-width: 150px; min-height: 155px; padding: 3rem 0.5rem 2rem; font-size: 0.9rem; }
     }
