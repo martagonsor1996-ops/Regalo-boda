@@ -63,6 +63,15 @@ st.markdown(
         max-width: 480px;
         margin: 0 auto;
     }
+    .st-key-heart-buttons [data-testid="stHorizontalBlock"] {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+    }
+    .st-key-heart-buttons [data-testid="column"] {
+        width: 50% !important;
+        min-width: 0 !important;
+        flex: 1 1 50% !important;
+    }
     .stButton > button {
         width: 100% !important;
         max-width: 220px;
@@ -126,35 +135,31 @@ st.markdown(
     .photo-4 { top: 51%; right: 3%; transform: rotate(-7deg); }
     .photo-5 { bottom: 4%; left: calc(50% - 600px); transform: rotate(-5deg); }
     @media (max-width: 1280px) {
-        .photo-frame { display: none; }
+        .photo-frame {
+            position: static;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 6px;
+            width: min(100%, 340px);
+            margin: 0 auto 1.25rem;
+        }
+        .photo-frame .frame-photo {
+            position: static;
+            width: 100%;
+            height: 72px;
+            box-sizing: border-box;
+            padding: 3px 3px 10px;
+            transform: none;
+        }
     }
     @media (max-width: 900px) {
-        .frame-photo { width: 170px; height: 215px; padding-bottom: 22px; }
-        .photo-1 { left: 1%; }
-        .photo-2 { right: 1%; }
-        .photo-3, .photo-4 { display: none; }
-        .photo-5 { left: 5%; bottom: 2%; }
         .block-container { padding-left: 1rem; padding-right: 1rem; }
     }
     @media (max-width: 600px) {
-        .frame-photo { width: 120px; height: 155px; padding: 4px 4px 16px; }
-        .photo-1 { top: 5%; }
-        .photo-2 { top: 7%; }
-        .photo-5 { display: none; }
         .hero h1 { font-size: 2.2rem; }
         .stButton > button { max-width: 150px; min-height: 155px; padding: 3rem 0.5rem 2rem; font-size: 0.9rem; }
     }
     </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.markdown(
-    """
-    <div class="hero">
-        <h1>Que se casan ¡LOL!</h1>
-        <p>Después del fiestón que nos vamos a pegar para celebrar lo enamorados que estáis, os toca disfrutar del MEJOR PAÍS DEL MUNDO. Queremos tener un detallito con vosotros para que podáis disfrutar juntos por allí. Como sabemos que cada personita vive los viajes de una manera y no queremos influir en vuestro nivel de ansiedad, os damos la opción de dejaros sorprender (os daremos la información justa y necesaria), o la opción de conocer todos los detalles de nuestro regalito con antelación. Está en vuestra mano decidir, pulsad el botón con el que os sintáis más cómodos.</p>
-    </div>
     """,
     unsafe_allow_html=True,
 )
@@ -177,6 +182,16 @@ if photo_paths:
     st.markdown(f'<div class="photo-frame">{"".join(photo_tags)}</div>', unsafe_allow_html=True)
 else:
     st.caption("Añade tus fotos en assets/fotos para verlas aquí.")
+
+st.markdown(
+    """
+    <div class="hero">
+        <h1>Que se casan ¡LOL!</h1>
+        <p>Después del fiestón que nos vamos a pegar para celebrar lo enamorados que estáis, os toca disfrutar del MEJOR PAÍS DEL MUNDO. Queremos tener un detallito con vosotros para que podáis disfrutar juntos por allí. Como sabemos que cada personita vive los viajes de una manera y no queremos influir en vuestro nivel de ansiedad, os damos la opción de dejaros sorprender (os daremos la información justa y necesaria), o la opción de conocer todos los detalles de nuestro regalito con antelación. Está en vuestra mano decidir, pulsad el botón con el que os sintáis más cómodos.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 with st.container(key="heart-buttons"):
     left_button, right_button = st.columns(2, gap="small")
