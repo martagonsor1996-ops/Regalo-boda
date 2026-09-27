@@ -66,17 +66,6 @@ st.markdown(
         box-sizing: border-box;
         margin: 0 auto;
     }
-    .st-key-heart-buttons [data-testid="stHorizontalBlock"] {
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        width: 100% !important;
-        gap: 0.5rem !important;
-    }
-    .st-key-heart-buttons [data-testid="column"] {
-        width: calc(50% - 0.25rem) !important;
-        min-width: 0 !important;
-        flex: 0 0 calc(50% - 0.25rem) !important;
-    }
     .stButton > button {
         width: 100% !important;
         max-width: 220px;
@@ -200,7 +189,7 @@ st.markdown(
 )
 
 with st.container(key="heart-buttons"):
-    left_button, right_button = st.columns(2, gap="small")
+    left_button, right_button = st.columns(2, gap="small", wrap=False)
 
     with left_button:
         wants_to_know = st.button("Quiero  \nsaber", use_container_width=True)
