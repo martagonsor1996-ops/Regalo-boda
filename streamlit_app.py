@@ -87,6 +87,7 @@ st.markdown(
     }
     .stButton > button[kind="tertiary"] {
         width: 100% !important;
+        max-width: none;
         min-height: 2.5rem !important;
         padding: 0.5rem 1rem !important;
         border: 1px solid #d7d9df !important;
