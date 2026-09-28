@@ -225,6 +225,7 @@ if st.session_state.get("show_know_details", False):
             Luego tenéis tiempo para seguir en las instalaciones si aún os habéis quedado con ganas.
             """
         )
+        st.markdown("**Cuándo:** 26/10/2026")
         st.link_button("Ubicación", location_url, use_container_width=True)
         st.info("Os recomendamos coger para ir hacia allí la línea Yurikamome, intentad sentaros en el primer vagón :)")
         show_entry_qr_button("know_entry_qr")
@@ -243,6 +244,7 @@ if st.session_state.get("show_surprise_details", False):
             - Podéis ir a la hora que queráis, calculad más o menos 2h antes de la hora a la que soléis cenar.
             """
         )
+    st.markdown("**Cuándo:** 26/10/2026")
     st.link_button("Ubicación", location_url, use_container_width=True)
     st.info("Os recomendamos coger para ir hacia allí la línea Yurikamome, intentad sentaros en el primer vagón :)")
     show_entry_qr_button("surprise_entry_qr")
